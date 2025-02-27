@@ -29,5 +29,21 @@ def product_except_self(nums):
         modified_nums[i] = changed_index_value
     return modified_nums"""
 
-print(product_except_self([10, 3, 5, 6, 2]))
+    n = len(nums)
+
+    suffix = [1] * n
+    prefix = [1] * n
+    result = [1] * n
+
+    for i in range(1,n):
+        prefix[i] = prefix[i-1] * nums[i-1]
+    
+    for i in range(n-2,-1,-1):
+        suffix[i] = suffix[i+1] * nums[i+1]
+    
+    for i in range(0,n):
+        result[i] = prefix[i] * suffix[i]
+    return result
+
+print(product_except_self([1,2,3,4]))
 
