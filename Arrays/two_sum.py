@@ -13,14 +13,21 @@ def two_sum(nums, target):
     # two_sum([3, 3], 6)  # Expected output: [0, 1] (3 + 3 = 6)
     """
     # Implement your solution here
-    index = 0
-    for i in range(0,len(nums)):
-        val = target - nums[i]
-        index = i
-        for j in range(i+1,len(nums)):
-            if nums[j] == val:
-                return i,j
-    return None
+    # index = 0
+    # for i in range(0,len(nums)):
+    #     val = target - nums[i]
+    #     index = i
+    #     for j in range(i+1,len(nums)):
+    #         if nums[j] == val:
+    #             return i,j
+    # return None
+    num_mapping = {}
+    for i,val in enumerate(nums):
+        complement = target - val
+        if complement in num_mapping:
+            return[num_mapping[complement],i]
+        num_mapping[val] = i
+    return []
 
 
 if __name__== "__main__":
