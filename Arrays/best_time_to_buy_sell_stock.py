@@ -12,18 +12,31 @@ def max_profit(prices):
     # max_profit([1,2,3,4,5])  # Expected output: 4 (Buy at 1, sell at 5)
     """
     # Implement your solution here
-    smallest_index = 0
-    for i in range(0,len(prices)):
-        if prices[smallest_index] > prices[i]:
-            smallest_index = i 
-    highest_index_after_smallest = smallest_index
-    for i in range(smallest_index,len(prices)):
-        if prices[i] > prices[highest_index_after_smallest]:
-            highest_index_after_smallest = i
-    if smallest_index == highest_index_after_smallest:
-        return 0
-    else:
-        return prices[highest_index_after_smallest] - prices[smallest_index]
+    # smallest_index = 0
+    # for i in range(0,len(prices)):
+    #     if prices[smallest_index] > prices[i]:
+    #         smallest_index = i        
+    # highest_index_after_smallest = smallest_index
+    # for i in range(smallest_index,len(prices)):
+    #     if prices[i] > prices[highest_index_after_smallest]:
+    #         highest_index_after_smallest = i
+    # if smallest_index == highest_index_after_smallest:
+    #     return 0
+    # else:
+    #     return prices[highest_index_after_smallest] - prices[smallest_index]
+
+    minimum = prices[0]
+    result = 0
+
+    for i in range(1,len(prices)):
+        if minimum > prices[i]:
+            minimum = prices[i]
+        
+        current_profit = prices[i] - minimum
+        if current_profit > result:
+            result = current_profit
+    return result
+
 # Example test cases
 if __name__ == "__main__":
     print(max_profit([7,1,5,3,6,4]))  # Expected output: 5
